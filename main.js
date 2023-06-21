@@ -4,7 +4,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import {
     getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-    onAuthStateChanged,
+    onAuthStateChanged, getRedirectResult, FacebookAuthProvider,
     signOut
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -44,14 +44,14 @@ function login(e) {
         .then(function (success) {
             alert("logined Successfully")
             var aaaa = (success.user.uid);
+            const userData = localStorage.getItem('uid');
             localStorage.setItem("uid", aaaa)
             console.log(aaaa)
 
 
 
 
-            // localStorage.setItem(success,user,uid)
-
+            window.location.replace("home.html");
         })
         .catch(function (err) {
             alert("login error" + err);
@@ -60,7 +60,4 @@ function login(e) {
     console.log(obj);
 
 }
-
-
-
 

@@ -2,9 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import {
-    getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
-    onAuthStateChanged,
-    signOut
+    getAuth, createUserWithEmailAndPassword, getRedirectResult, FacebookAuthProvider, signInWithRedirect
 } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -47,4 +45,30 @@ function regitser(e) {
         }).catch(function (error) {
             alert('error' || error)
         })
+}
+
+
+function loginfacebook(e) {
+    e.preventDefault()
+    getRedirectResult(auth)
+        .then((result) => {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const credential = FacebookAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+            console.log(token)
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // AuthCredential type that was used.
+            const credential = FacebookAuthProvider.credentialFromError(error);
+            // ...
+        });
+
 }
