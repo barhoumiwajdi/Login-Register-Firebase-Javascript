@@ -1,3 +1,5 @@
+
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import {
@@ -21,11 +23,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
-
-const firstname = document.getElementById('firstname')
-const lastname = document.getElementById('lastname')
-const email = document.getElementById('email')
-const password = document.getElementById('password')
 
 
 
