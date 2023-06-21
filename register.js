@@ -1,3 +1,4 @@
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import {
@@ -29,41 +30,21 @@ const password = document.getElementById('password')
 
 
 
-
-
-const userEmail = document.getElementById('useremail')
-const userPassword = document.getElementById('userpassword')
-const btnlogin = document.querySelector('#login')
-btnlogin.addEventListener('click', login)
-function login(e) {
-
-    e.preventDefault();
-    var obj = {
-        email: userEmail.value,
-        password: userPassword.value,
-    };
-
-    signInWithEmailAndPassword(auth, obj.email, obj.password)
+const btn = document.querySelector('#register')
+btn.addEventListener('click', regitser)
+function regitser(e) {
+    e.preventDefault()
+    var data = {
+        firstname: firstname.value,
+        lastname: lastname.value,
+        email: email.value,
+        password: password.value
+    }
+    console.log(data)
+    createUserWithEmailAndPassword(auth, data.email, data.password)
         .then(function (success) {
-            alert("logined Successfully")
-            var aaaa = (success.user.uid);
-            localStorage.setItem("uid", aaaa)
-            console.log(aaaa)
-
-
-
-
-            // localStorage.setItem(success,user,uid)
-
+            alert('Account Create Successfully')
+        }).catch(function (error) {
+            alert('error' || error)
         })
-        .catch(function (err) {
-            alert("login error" + err);
-        });
-
-    console.log(obj);
-
 }
-
-
-
-
